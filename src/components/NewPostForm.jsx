@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 } from 'uuid';
 
-function NewTicketForm(props){
+function NewPostForm(props){
   let _names = null;
   let _location = null;
   let _issue = null;
 
-  function handleNewTicketFormSubmission(event) {
+  function handleNewPostFormSubmission(event) {
     event.preventDefault();
-    props.onNewTicketCreation({names: _names.value, location: _location.value, issue: _issue.value, id: v4()});
+    props.onNewPostCreation({names: _names.value, location: _location.value, issue: _issue.value, id: v4()});
     _names.value = '';
     _location.value = '';
     _issue.value = '';
@@ -17,7 +17,7 @@ function NewTicketForm(props){
 
   return (
     <div>
-      <form onSubmit={handleNewTicketFormSubmission}>
+      <form onSubmit={handleNewPostFormSubmission}>
         <input
           type='text'
           id='names'
@@ -38,8 +38,8 @@ function NewTicketForm(props){
   );
 }
 
-NewTicketForm.propTypes = {
-  onNewTicketCreation: PropTypes.func
+NewPostForm.propTypes = {
+  onNewPostCreation: PropTypes.func
 };
 
-export default NewTicketForm;
+export default NewPostForm;
