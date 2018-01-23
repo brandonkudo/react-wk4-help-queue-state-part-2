@@ -1,5 +1,6 @@
 import React from 'react';
 import Post from './Post';
+import StatusUpdate from './StatusUpdate';
 import PropTypes from 'prop-types';
 
 function PostList(props){
@@ -11,6 +12,12 @@ function PostList(props){
         <Post names={post.names}
           location={post.location}
           issue={post.issue}
+          key={post.id}/>
+      )}
+      <hr/>
+      {props.postList.map((post)=>
+        <StatusUpdate name={post.name}
+          status={post.status}
           key={post.id}/>
       )}
     </div>

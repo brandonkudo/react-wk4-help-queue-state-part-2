@@ -6,7 +6,8 @@ class Post extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      likeStatus: false
+      likeStatus: false,
+      likes: 0
     };
     this.setLike = this.setLike.bind(this);
     this.setDislike = this.setDislike.bind(this);
@@ -14,33 +15,39 @@ class Post extends React.Component {
 
   setLike() {
     this.setState({likeStatus: true});
+    var newLikesCount = this.state.likes;
+    (newLikesCount+=1);
+    this.setState({likes: newLikesCount});
   }
 
   setDislike() {
-    this.setState({likeStatus: false});
+    var newLikesCount = this.state.likes;
+    (newLikesCount-=1);
+    this.setState({likes: newLikesCount});
   }
 
-  render(props) {
+  render() {
     console.log(this);
     let currentStatus = null;
-    if (this.state.likeStatus) {
-      currentStatus = <p>Liked</p>;
+    if (this.state.likes > 0) {
+      currentStatus = <p>{this.state.likes}Likes</p>;
     } else {
       currentStatus = <p>Not Liked</p>;
     }
 
-    let currentButton = null;
-    if (this.state.likeStatus === true) {
-      currentButton = <button onClick={this.setDislike}>Dislike</button>
-    } else {
-      currentButton = <button onClick={this.setLike}>Like</button>
-    }
+    // let currentButton = null;
+    // if (this.state.likeStatus === true) {
+    //   currentButton = <button onClick={this.setDislike}>Dislike</button>;
+    // } else {
+    //   currentButton = <button onClick={this.setLike}>Like</button>;
+    // }
 
     return (
       <div>
         <h3>{this.props.names} - {this.props.location}</h3>
         <p><em>{this.props.issue}</em></p>
-        {currentButton}
+        <button onClick={this.setLike}>Like</button>
+        <button onClick={this.setDislike}>Dislike</button>
         {currentStatus}
         <hr/>
       </div>

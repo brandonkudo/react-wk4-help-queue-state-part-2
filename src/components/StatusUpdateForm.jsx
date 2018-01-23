@@ -2,44 +2,39 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 } from 'uuid';
 
-function NewPostForm(props){
-  let _names = null;
-  let _location = null;
-  let _issue = null;
+function StatusUpdateForm(props){
+  let _name = null;
+  let _status = null;
 
-  function handleNewPostFormSubmission(event) {
+  function handleStatusUpdateFormSubmission(event) {
     event.preventDefault();
-    props.onNewPostCreation({names: _names.value, location: _location.value, issue: _issue.value, id: v4()});
-    _names.value = '';
-    _location.value = '';
-    _issue.value = '';
+    props.onNewStatusCreation({name: _name.value, status: _status.value, id: v4()});
+    _name.value = '';
+    _status.value = '';
   }
 
   return (
     <div>
-      <form onSubmit={handleNewPostFormSubmission}>
+      <form onSubmit={handleStatusUpdateFormSubmission}>
         <input
           type='text'
-          id='names'
-          placeholder='Pair Names'
-          ref={(input) => {_names = input;}}/>
+          id='name'
+          placeholder='Input your name'
+          ref={(input) => {_name = input;}}/>
         <input
           type='text'
-          id='location'
-          placeholder='Location'
-          ref={(input) => {_location = input;}}/>
-        <textarea
-          id='issue'
-          placeholder='Describe your issue.'
-          ref={(textarea) => {_issue = textarea;}}/>
-        <button type='submit'>Help!</button>
+          id='status'
+          placeholder='What is your status update'
+          ref={(input) => {_status = input;}}/>
+
+        <button type='submit'>Update Your Status!</button>
       </form>
     </div>
   );
 }
 
-NewPostForm.propTypes = {
-  onNewPostCreation: PropTypes.func
+StatusUpdateForm.propTypes = {
+  onNewStatusCreation: PropTypes.func
 };
 
-export default NewPostForm;
+export default StatusUpdateForm;

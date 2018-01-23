@@ -1,9 +1,9 @@
 import React from 'react';
-import NewStatusUpdate from './NewStatusUpdate';
-import ConfirmationQuestions from './ConfirmationQuestions';
+import StatusUpdateForm from './StatusUpdateForm';
+import StatusConfirmationQuestions from './StatusConfirmationQuestions';
 import PropTypes from 'prop-types';
 
-class StatusUpdateControl extends React.Component {
+class StatusUpdateFormControl extends React.Component {
 
   constructor(props) {
     super(props);
@@ -21,9 +21,9 @@ class StatusUpdateControl extends React.Component {
   render(){
     let currentlyVisibleContent = null;
     if (this.state.formVisibleOnPage){
-      currentlyVisibleContent = <NewStatusUpdate onNewPostCreation={this.props.onNewPostCreation}/>;
+      currentlyVisibleContent = <StatusUpdateForm onNewStatusCreation={this.props.onNewStatusCreation}/>;
     } else {
-      currentlyVisibleContent = <ConfirmationQuestions onTroubleshootingConfirmation={this.handleTroubleshootingConfirmation}/>;
+      currentlyVisibleContent = <StatusConfirmationQuestions onTroubleshootingConfirmation={this.handleTroubleshootingConfirmation}/>;
     }
     return(
       <div>
@@ -33,8 +33,8 @@ class StatusUpdateControl extends React.Component {
   }
 }
 
-StatusUpdateControl.propTypes = {
-  onNewPostCreation: PropTypes.func
+StatusUpdateFormControl.propTypes = {
+  onNewStatusCreation: PropTypes.func
 };
 
-export default StatusUpdateControl;
+export default StatusUpdateFormControl;
